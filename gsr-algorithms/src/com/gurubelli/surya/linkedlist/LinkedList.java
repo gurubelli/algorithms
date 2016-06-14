@@ -102,16 +102,14 @@ public class LinkedList<E> {
 		if (head == null)
 			return;
 		Node current = head;
-		while (current != null) {
-			Node runner = current;
-			while (runner.next != null) {
+		Node runner = head;
+		while (runner.next != null) {
 				if (runner.data == current.data) {
 					runner.next = runner.next.next;
 				} else {
 					runner = runner.next;
 				}
-			}
-			current = current.next;
+			
 		}
 
 	}
@@ -139,8 +137,8 @@ public class LinkedList<E> {
 	public Node nthToLastR2(Node head, int k , IntWrapper i){
 		
 		if(head == null) return null;
-		Node node = nthToLastR2(head, k, i);
-		i.value = i.value+1;
+		Node node = nthToLastR2(head.next, k, i);
+		i.value = i.value + 1;
 		if(i.value == k) {
 			return head;
 		}

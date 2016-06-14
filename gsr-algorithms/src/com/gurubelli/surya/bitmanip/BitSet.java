@@ -14,10 +14,10 @@ public class BitSet {
 			int num = scanner.nextInt();
 			System.out.println("Entered number " + num);
 
-			setBit();
-			clearBit();
-			testAbit();
-			countBits();
+			//setBit();
+			//clearBit();
+			//testAbit();
+			//countBits();
 			//result = a?b:c
 			//implement the above statement without using any conditional statements
 			//find the maximum integer using bitwise

@@ -3,7 +3,7 @@ package com.gurubelli.surya.arrays;
 public class StockBuy {
 
 	
-	https://gist.github.com/benjaminwu7
+	//https://gist.github.com/benjaminwu7
 		
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
