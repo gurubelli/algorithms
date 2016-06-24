@@ -102,7 +102,27 @@ public class FindDuplicateElement {
 			
 		}
 	}
+	
+	private static int extraSpace(int [] a)  {
+		int [] flags = new int[a.length];
+		for (int i= 0; i< a.length; i++) {
+			
+		}
+		return -1;
+	}
 
+	private static int bruteForce2(int [] a) {
+		
+		for (int i = 0; i < a.length; i++) {
+			for (int j = i+1 ; j < a.length; j++) {
+				if (a[i] == a[j]) {
+					return a[i];
+				}
+			}
+		}
+		return -1;
+		
+	}
 	private static void bruteforce(Integer[] a) {
 		// Brute force
 		for (int i = 0; i < a.length; i++) {
@@ -133,5 +153,48 @@ public class FindDuplicateElement {
 		return intArray;
 
 	}
+	
+	 public int findDuplicate(int[] a) {
+	        
+	        //Brute force approach takes 0(n2)
+	        //Using hash Map or the flags array --
+	        //if we allowed to modify the array --> then 
+	        //slow and fast pointers
+	        if (a == null || a.length == 0) {
+	            return -1;
+	        }
+	        int slow = 0;
+	        int fast = 0;
+	        slow = a[slow];
+	        fast = a[a[fast]];
+	        while (slow != fast) {
+	            slow = a[slow];
+	            fast = a[a[fast]];
+	        }
+	        fast = 0;
+	        while (a[slow] != a[fast]) {
+	            slow = a[slow];
+	            fast = a[fast];
+	        }
+	        return a[slow];
+	        
+	        /*int slow = a.length -1;
+	        int fast = a.length -1;
+	        while (true) {
+	            slow = a[slow];
+	            fast = a[a[fast]];
+	            if (slow == fast) {
+	                break; //duplicate does exist
+	            }
+	        }
+	        int finder = a.length-1;
+	        while (true) {
+	            slow = a[slow];
+	            fast = a[fast];
+	            if (slow == finder) {
+	                return a[slow];
+	            }
+	        }*/
+	    }
 
 }

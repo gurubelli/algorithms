@@ -50,8 +50,7 @@ public class MissingNumber3Times {
 			ones &= threes; //remove from ones if it exists in threes
 			twos &= threes; //remove from twos if it exists in twos
 		}
-
-		System.out.println("\n unique element " + ones);
+	    System.out.println("\n unique element " + ones);
 		return ones;
 	}
 		

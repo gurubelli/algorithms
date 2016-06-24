@@ -7,6 +7,7 @@ public class AddingTwoNumbers {
 		
 		while (b!= 0) {
 			int carry = (a & b);
+			System.out.println("Carry " + carry);
 			a = a^b;
 			b = carry<<1;
 		}

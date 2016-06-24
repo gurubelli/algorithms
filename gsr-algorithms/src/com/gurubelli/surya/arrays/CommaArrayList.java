@@ -23,6 +23,11 @@ public class CommaArrayList {
 	      list = Arrays.asList(str.split(","));
 	      
 	      System.out.println("ArrayList splitting with only comma: " + list);
+	      
+	      str  = "the   sky  is   blue";
+	      String words [] = str.split("\\s\\s*");
+	      System.out.println("The length of words " + words.length);
+	      System.out.println(Arrays.toString(words));
 	}
 
 }
