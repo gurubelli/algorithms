@@ -85,6 +85,13 @@ public class BuildingBlocks<E> {
 		
 		Synchronizer is any object that control flow of threads based on its state. Semaphores, barrier and latches
 		
+		Latch : That can delay the progress of thread until it reaches terminal state. It acts as a gate. Gate is closed until the latch reaches the terminal state.
+		
+		Future task : Acts as like a latch. 
+		
+		Semaphores: Counting semaphores are used to control the number of activities that can access a certain resource . Resource pools or to impose a bound on collection
+		
+		Barriers: They block group of threads until some event has occurred. All the threads must come together at a barrier point at the same time in order to proceed. 
 	 * 
 	 */
 	

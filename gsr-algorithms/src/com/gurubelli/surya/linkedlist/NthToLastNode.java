@@ -52,10 +52,10 @@ public class NthToLastNode {
 		return (int) p1.data;
 	}
 
-	ListNode nthToLast(ListNode head, int n) {
+	Node nthToLast(Node head, int n) {
 		// write your code here
-		ListNode p1 = head;
-		ListNode p2 = head;
+		Node p1 = head;
+		Node p2 = head;
 		for (int i = 0; i < n; i++) {
 			p2 = p2.next;
 		}

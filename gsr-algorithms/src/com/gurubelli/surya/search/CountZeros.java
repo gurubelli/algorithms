@@ -23,9 +23,9 @@ public class CountZeros {
 			int mid =  start + (end - start) /2 ;
 			if (a[mid] == 0) {
 				count = count + (end - mid) + 1;
-				end = mid-1;
+				end = mid - 1;
 			} else {
-				start = mid+1;
+				start = mid + 1;
 			}
 		}
 				

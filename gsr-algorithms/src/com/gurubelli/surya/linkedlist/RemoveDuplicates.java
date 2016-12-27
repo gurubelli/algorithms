@@ -6,7 +6,7 @@ public class RemoveDuplicates {
 
 	public static void main(String[] args) {
 
-		ListNode head = LinkedListUtil.readInput();
+		Node head = LinkedListUtil.readInput();
 		deleteDuplicates(head);
 	}
 
@@ -33,15 +33,15 @@ public class RemoveDuplicates {
 	// Given a sorted linked list, delete all nodes that have duplicate numbers,
 	// leaving only distinct numbers from the original list
 
-	public static ListNode deleteDuplicates(ListNode head) {
+	public static Node deleteDuplicates(Node head) {
 		// write your code here
 		if (head == null) {
 			return head;
 		}
-		ListNode dummy = new ListNode(0);
+		Node dummy = new Node(0);
 		dummy.next = head;
-		ListNode prev = dummy;
-		ListNode runner = head;
+		Node prev = dummy;
+		Node runner = head;
 		boolean dupFlag  = false;
 		while (runner != null) {
 			if ((runner.next != null) && (runner.val == runner.next.val)) {

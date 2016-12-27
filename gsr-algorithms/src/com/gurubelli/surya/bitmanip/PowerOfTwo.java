@@ -6,6 +6,8 @@ public class PowerOfTwo {
         //Using bitwise &
 		if (n <= 0) return false;
 		if ((n & (n-1)) == 0) return true;
+		//n * n2 ;
+		
         return false;
     }
 	
@@ -26,7 +28,7 @@ public class PowerOfTwo {
 			while (n%2 == 0) {
 				n = n /2;
 			}
-			return (n ==1);
+			return (n == 1);
 		}
 		  
 	}

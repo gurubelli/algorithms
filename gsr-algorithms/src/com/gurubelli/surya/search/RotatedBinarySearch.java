@@ -105,7 +105,8 @@ public class RotatedBinarySearch {
 	}
 	public static void main(String[] args) {
 
-		int a[] = new int[] { 12, 14, 18, 21, 3, 6, 8, 9 };
+		//int a[] = new int[] { 12, 14, 18, 21, 3, 6, 8, 9 };
+		int a[] = new int[] { 4, 5, 1, 2, 3 };
 		int index = rotatedSearch(a, a.length, 3);
 		if (index == -1) {
 			System.out.println("Element not found");
