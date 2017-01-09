@@ -8,6 +8,8 @@ public class MaxSubArraySum {
 
 		// System.out.println("Input array" + Arrays.toString(a));
 		// Kadane's algorithm
+		//For example, given the array [-2,1,-3,4,-1,2,1,-5,4],
+		//the contiguous subarray [4,-1,2,1] has the largest sum = 6.
 		int max_ending_here = a[0];
 		int max_so_far = a[0];
 		int startIndex = 0;

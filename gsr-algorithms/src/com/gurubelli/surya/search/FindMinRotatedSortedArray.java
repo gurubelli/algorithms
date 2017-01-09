@@ -5,8 +5,8 @@ import com.gurubelli.surya.arrays.Array;
 public class FindMinRotatedSortedArray {
 
 	public static void main(String[] args) {
-		int a [] = Array.readInput();
-		//[0,1,2,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1], -9
+		int a[] = Array.readInput();
+		// [0,1,2,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1], -9
 		System.out.print(findMin(a));
 
 	}
@@ -35,24 +35,41 @@ public class FindMinRotatedSortedArray {
 				end = mid;
 			} else if (num[mid] > num[start]) {
 				start = mid;
-			}/* else {
-				start++;
-			}*/
+			} /*
+				 * else { start++; }
+				 */
 		}
-		/*while (start + 1 < end) {
-			int mid = start + (end - start) / 2;
-			if (num[mid] <= num[mid + 1] && num[mid] <= num[mid - 1]) {
-				return num[mid];
+		/*
+		 * while (start + 1 < end) { int mid = start + (end - start) / 2; if
+		 * (num[mid] <= num[mid + 1] && num[mid] <= num[mid - 1]) { return
+		 * num[mid]; } if (num[mid] <= num[end]) { end = mid; } else if
+		 * (num[mid] >= num[start]) { start = mid; } } if (num[start] >=
+		 * num[end]) { return num[end]; }
+		 */
+		return -1;
+	}
+
+	static int findRotationCount(int a[], int n) {
+
+		int low = 0;
+		int high = n - 1;
+		while (low <= high) {
+			//Not r
+			if (a[low] <= a[high]) {
+				return low;
+			} 
+			int mid = low + (high - low)/ 2;
+			int next = (mid + 1) % n;
+			int prev = (mid + n - 1)  % n;
+			if (a[mid] <= a[next] && a[mid] <= a[prev] ) {
+				return mid;
+			} else if (a[mid] <= a[high]) {
+				high = mid -1;
+			} else if (a[mid] >= a[low]) {
+				low = mid + 1;
 			}
-			if (num[mid] <= num[end]) {
-				end = mid;
-			} else if (num[mid] >= num[start]) {
-				start = mid;
-			}
+			
 		}
-		if (num[start] >= num[end]) {
-			return num[end];
-		}*/
 		return -1;
 	}
 }
