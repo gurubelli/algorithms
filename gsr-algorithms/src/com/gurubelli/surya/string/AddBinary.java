@@ -7,6 +7,15 @@ public class AddBinary {
 	public static void main(String[] args) {
 
 		Scanner scanner = new Scanner(System.in);
+		int val1 = '1';
+		System.out.println("The value prints the ascii value " + val1);
+		val1 = val1 - '0';
+		System.out.println("The value prints the actual value " + val1);
+		int val2 = '1' - '0';
+		System.out.println("The value2 " + val2);
+		int sum = (val1 ^ val2) + '0';
+		System.out.println("The sum in integer " + sum);
+		System.out.println("The sum in char " + (char) sum);
 
 	}
 

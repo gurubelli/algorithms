@@ -1,25 +1,23 @@
 package com.gurubelli.surya.linkedlist;
 
-import com.gurubelli.surya.linkedlist.LinkedList.Node;
-
 public class RemoveDuplicates {
 
 	public static void main(String[] args) {
 
-		Node head = LinkedListUtil.readInput();
+		ListNode head = LinkedListUtil.readInput();
 		deleteDuplicates(head);
 	}
 
 	// Delete duplicates from From sorted linked list
 
-	Node remvoeDups(Node head) {
+	ListNode remvoeDups(ListNode head) {
 		if (head == null) {
 			return head;
 		}
 
-		Node runner = head;
+		ListNode runner = head;
 		while (runner.next != null) {
-			if (runner.data == runner.next.data) {
+			if (runner.val == runner.next.val) {
 				runner.next = runner.next.next;
 			} else {
 
@@ -30,18 +28,18 @@ public class RemoveDuplicates {
 		return head;
 	}
 
-	// Given a sorted linked list, delete all nodes that have duplicate numbers,
+	// Given a sorted linked list, delete all ListNodes that have duplicate numbers,
 	// leaving only distinct numbers from the original list
 
-	public static Node deleteDuplicates(Node head) {
+	public static ListNode deleteDuplicates(ListNode head) {
 		// write your code here
 		if (head == null) {
 			return head;
 		}
-		Node dummy = new Node(0);
+		ListNode dummy = new ListNode(0);
 		dummy.next = head;
-		Node prev = dummy;
-		Node runner = head;
+		ListNode prev = dummy;
+		ListNode runner = head;
 		boolean dupFlag  = false;
 		while (runner != null) {
 			if ((runner.next != null) && (runner.val == runner.next.val)) {
