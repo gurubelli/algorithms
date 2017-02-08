@@ -56,8 +56,7 @@ public class Bst {
 			return true;
 		if (node.data < min || node.data > max)
 			return false;
-		return isBstUtil(node.left, min, node.data - 1)
-				&& isBstUtil(node.right, node.data + 1, max);
+		return isBstUtil(node.left, min, node.data - 1) && isBstUtil(node.right, node.data + 1, max);
 	}
 
 	@SuppressWarnings("unused")
@@ -159,13 +158,14 @@ public class Bst {
 		inorder(root, nodes, null);
 		swap(nodes[0], nodes[1]);
 	}
-	
-	private void swap(Node a, Node b) {  
-		   if (a == null || b == null)  return;
-		   int tmp = a.data;  
-		   a.data = b.data;  
-		   b.data = tmp;  
-		 }  
+
+	private void swap(Node a, Node b) {
+		if (a == null || b == null)
+			return;
+		int tmp = a.data;
+		a.data = b.data;
+		b.data = tmp;
+	}
 
 	// in-order traversal and return the last visited node in the traversal
 	private Node inorder(Node root, Node[] nodes, Node pre) {

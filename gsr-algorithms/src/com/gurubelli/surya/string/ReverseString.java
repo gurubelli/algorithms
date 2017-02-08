@@ -10,6 +10,7 @@ public class ReverseString {
 		System.out.println(reverse(input));
 		System.out.println(reverseBuilder(input));
 		System.out.println(reverseBetween(input, 0, input.length() - 1));
+		System.out.println(" Recursion " + reverseRecursion(input));
 	}
 
 	private static String reverse(String input) {
@@ -66,5 +67,19 @@ public class ReverseString {
 			value[i + j - k] = temp;
 		}
 		return new String(value);
+	}
+
+	private static String reverseRecursion(String input) {
+
+		if (input == null || input.isEmpty()) {
+			return input;
+		}
+		int len = input.length();
+		if (len == 1) {
+			return input;
+		}
+		final String reverse = reverseRecursion(input.substring(1)) + input.charAt(0);
+		return reverse;
+
 	}
 }

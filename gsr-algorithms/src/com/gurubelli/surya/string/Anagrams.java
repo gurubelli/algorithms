@@ -1,20 +1,23 @@
 package com.gurubelli.surya.string;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 import com.gurubelli.surya.arrays.Array;
 
 public class Anagrams {
 
-	public static void main(String [] args) {
+	public static void main(String[] args) {
 		String s = Array.readString();
 		String t = Array.readString();
-		System.out.println(anagram(s,t));
-		System.out.println(anagram2(s,t));
+		System.out.println(anagram(s, t));
+		System.out.println(anagram2(s, t));
+		HashMap<Integer, Integer> map = new HashMap<>();
 	}
-	
+
 	/***
-	 * O(nlogn) --> 
+	 * O(nlogn) -->
+	 * 
 	 * @param s
 	 * @param t
 	 * @return
@@ -28,14 +31,16 @@ public class Anagrams {
 		}
 		return sort(s).equals(sort(t));
 	}
-	
+
 	static String sort(String str) {
 		char[] content = str.toCharArray();
 		Arrays.sort(content);
 		return new String(content);
 	}
+
 	/**
 	 * Check if two strings have identical character counts.
+	 * 
 	 * @param s
 	 * @param t
 	 * @return
@@ -47,24 +52,23 @@ public class Anagrams {
 		if (s.length() != t.length()) {
 			return false;
 		}
-		int [] letters = new int[256];
-		
-		char [] s_array = s.toCharArray();
+		int[] letters = new int[256];
+
+		char[] s_array = s.toCharArray();
 		for (char c : s_array) {
 			letters[c]++;
 		}
-		
-		for (int i = 0; i < t.length() ; i++) {
-			int  c = (int) t.charAt(i);
+
+		for (int i = 0; i < t.length(); i++) {
+			int c = t.charAt(i);
 			letters[c]--;
 			if (letters[c] < 0) {
 				return false;
 			}
-			
+
 		}
 		return true;
-		
+
 	}
-	
-	
+
 }

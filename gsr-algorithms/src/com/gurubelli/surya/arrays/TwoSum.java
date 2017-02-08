@@ -10,7 +10,7 @@ public class TwoSum {
 	public static void main(String[] args) {
 
 		Scanner scanner = null;
-      //http://massivealgorithms.blogspot.com/2016/10/leetcode-414-third-maximum-number.html
+		// http://massivealgorithms.blogspot.com/2016/10/leetcode-414-third-maximum-number.html
 		try {
 
 			System.out.println("Enter the numbers separated by comma");
@@ -51,19 +51,39 @@ public class TwoSum {
 		return ret;
 	}
 
+	private static int[] sortedSum(int[] a, int sum) {
+		// Sort the numbers
+		Arrays.sort(a);
+		// Then use binary search. However, that is n log n
+		// Two pointers
+		int low = 0;
+		int high = a.length - 1;
+
+		while (low < high) {
+			int s = a[low] + a[high];
+			if (s == sum) {
+				return new int[] { low + 1, high + 1 };
+			} else if (s < sum) {
+				low++;
+			} else {
+				high--;
+			}
+		}
+		return new int[] { -1, 1 };
+	}
+
 	private static int[] useHashMap(int[] nums, int target) {
 
 		if (nums == null || nums.length == 0) {
 			return new int[] { -1, -1 };
 		}
-		Map<Integer,Integer> numsMap = new HashMap<>();
-		for (int i = 0; i < nums.length ; i++) {
+		Map<Integer, Integer> numsMap = new HashMap<>();
+		for (int i = 0; i < nums.length; i++) {
 			int diff = target - nums[i];
 			if (numsMap.containsKey(diff)) {
-				return new int[] { numsMap.get(diff), i};
-			} else {
-				numsMap.put(nums[i], i);
+				return new int[] { numsMap.get(diff), i };
 			}
+			numsMap.put(nums[i], i);
 		}
 
 		return new int[] { -1, -1 };
