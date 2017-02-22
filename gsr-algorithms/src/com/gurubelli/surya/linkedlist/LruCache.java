@@ -1,72 +1,131 @@
 package com.gurubelli.surya.linkedlist;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class LruCache {
-    private class Node{
-        Node prev;
-        Node next;
-        int key;
-        int value;
 
-        public Node(int key, int value) {
-            this.key = key;
-            this.value = value;
-            this.prev = null;
-            this.next = null;
-        }
-    }
+	// https://alaindefrance.wordpress.com/2014/10/05/lru-cache-implementation/
 
-    private int capacity;
-    private HashMap<Integer, Node> hs = new HashMap<Integer, Node>();
-    private Node head = new Node(-1, -1);
-    private Node tail = new Node(-1, -1);
+	private class Node {
+		Node prev;
+		Node next;
+		int key;
+		int value;
 
-    public LruCache(int capacity) {
-        this.capacity = capacity;
-        tail.prev = head;
-        head.next = tail;
-    }
+		public Node(int key, int value) {
+			this.key = key;
+			this.value = value;
+			this.prev = null;
+			this.next = null;
+		}
+	}
 
-    public int get(int key) {
-        if( !hs.containsKey(key)) {
-            return -1;
-        }
+	private int capacity;
+	private Map<Integer, Node> data;
+	private Node head;
+	private Node end;
 
-        // remove current
-        Node current = hs.get(key);
-        current.prev.next = current.next;
-        current.next.prev = current.prev;
+	public LruCache(int capacity) {
+		this.capacity = capacity;
+		data = new HashMap<>();
 
-        // move current to tail
-        move_to_tail(current);
+	}
 
-        return hs.get(key).value;
-    }
+	public int get(int key) {
+		if (data.containsKey(key)) {
+			// Get the node and move to first
+			Node node = data.get(key);
+			moveFirst(node);
+			return node.value;
 
-    public void set(int key, int value) {
-        if( get(key) != -1) {
-            hs.get(key).value = value;
-            return;
-        }
+		}
+		// Not found
+		return -1;
+	}
 
-        if (hs.size() == capacity) {
-            hs.remove(head.next.key);
-            head.next = head.next.next;
-            head.next.prev = head;
-        }
+	private void moveFirst(Node node) {
+		this.remove(node);
+		this.add(node);
+	}
 
-        Node insert = new Node(key, value);
-        hs.put(key, insert);
-        move_to_tail(insert);
-    }
+	private void add(Node node) {
 
-    private void move_to_tail(Node current) {
-        current.prev = tail.prev;
-        tail.prev = current;
-        current.prev.next = current;
-        current.next = tail;
-    }
+		// First element
+		if (null == head) {
+			head = node;
+			end = node;
+			return;
+		}
+		this.head.prev = node;
+		node.next = head;
+		head = node;
+	}
+
+	private void removeLast() {
+		remove(this.end);
+	}
+
+	private void remove(Node node) {
+		// Nothing to remove
+		if (this.head == null) {
+			return;
+		}
+		// Remove only item
+		if (node == head && node == end) {
+			head = null;
+			end = null;
+			return;
+		}
+		// Remove from head
+		if (node == head) {
+			head = node.next;
+			head.prev = null;
+			return;
+		}
+		// Remove from end
+		if (node == end) {
+			end.prev.next = null;
+			end = node.prev;
+
+		}
+		// Remove middle
+		node.prev.next = node.next;
+		node.next.prev = node.prev;
+
+	}
+
+	public void set(int key, int value) {
+		// Existing slot
+		if (data.containsKey(key)) {
+			Node node = data.get(key);
+			moveFirst(node);
+			node.value = value;
+			return;
+		}
+
+		// Out of capacity
+		if (this.data.size() >= capacity) {
+			int id = this.end.key;
+			removeLast();
+			data.remove(id);
+		}
+
+		// New slot
+		Node node = new Node(key, value);
+		this.add(node);
+		this.data.put(key, node);
+		this.add(node);
+
+	}
+
+	public static void main(String[] args) {
+		// 3,
+		// [set(1,1),set(2,2),set(3,3),set(4,4),get(4),get(3),get(2),get(1),set(5,5),get(1),get(2),get(3),get(4),get(5)]
+
+		// Output ---> [4,3,2,-1,-1,2,-1,4,5]
+		// Expect4ed ---> [4,3,2,-1,-1,2,3,-1,5]
+
+	}
+
 }
-

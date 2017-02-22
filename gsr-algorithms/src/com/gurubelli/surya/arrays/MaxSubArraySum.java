@@ -1,7 +1,6 @@
 package com.gurubelli.surya.arrays;
 
 import java.util.Arrays;
-import java.util.Collection;
 
 public class MaxSubArraySum {
 
@@ -9,8 +8,8 @@ public class MaxSubArraySum {
 
 		// System.out.println("Input array" + Arrays.toString(a));
 		// Kadane's algorithm
-		//For example, given the array [-2,1,-3,4,-1,2,1,-5,4],
-		//the contiguous subarray [4,-1,2,1] has the largest sum = 6.
+		// For example, given the array [-2,1,-3,4,-1,2,1,-5,4],
+		// the contiguous subarray [4,-1,2,1] has the largest sum = 6.
 		int max_ending_here = a[0];
 		int max_so_far = a[0];
 		int startIndex = 0;
@@ -37,9 +36,40 @@ public class MaxSubArraySum {
 		for (int idx = startIndex; idx <= endIndex; idx++) {
 			System.out.println("array element " + a[idx]);
 		}
-		
+
 		return max_so_far;
 
+	}
+
+	static int bruteforce(int a[], int n) {
+		int maxSubArray = Integer.MIN_VALUE;
+		int startIdx = -1;
+		int endIdx = n - 1;
+		for (int i = 0; i < n; i++) {
+			int maxSum = a[i];
+			int sum = a[i];
+			for (int j = i + 1; j < n; j++) {
+				sum = sum + a[j];
+				if (sum >= maxSum) {
+					maxSum = sum;
+					endIdx = j;
+				} else {
+					endIdx = i;
+				}
+
+			}
+			if (maxSum > maxSubArray) {
+				maxSubArray = maxSum;
+				startIdx = i;
+			}
+
+		}
+		System.out.println("Max sub array sum of " + Arrays.toString(a) + " is " + maxSubArray + " and startIdx "
+				+ startIdx + " and endIdx " + endIdx);
+		for (int idx = startIdx; idx <= endIdx; idx++) {
+			System.out.println("array element " + a[idx]);
+		}
+		return maxSubArray;
 	}
 
 	static int maxSubArraySum2(int a[], int n) {
@@ -88,7 +118,7 @@ public class MaxSubArraySum {
 
 	private static void print(int[] a) {
 		maxSumArray(a, a.length);
+		bruteforce(a, a.length);
 	}
-	
-	
+
 }

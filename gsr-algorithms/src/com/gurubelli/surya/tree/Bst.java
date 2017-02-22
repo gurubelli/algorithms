@@ -47,7 +47,7 @@ public class Bst {
 	}
 
 	public static boolean isBst(Node node) {
-		return isBstUtil(node, Integer.MAX_VALUE, Integer.MAX_VALUE);
+		return isBstUtil(node, Integer.MIN_VALUE, Integer.MAX_VALUE);
 	}
 
 	private static boolean isBstUtil(Node node, int min, int max) {

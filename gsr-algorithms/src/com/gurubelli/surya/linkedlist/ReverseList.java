@@ -1,7 +1,8 @@
 package com.gurubelli.surya.linkedlist;
 
+import java.util.Scanner;
+
 import com.gurubelli.surya.linkedlist.LinkedList.Node;
-import java.util.*;
 
 public class ReverseList {
 
@@ -39,6 +40,7 @@ public class ReverseList {
 			prev = runner;
 			runner = second;
 		}
+		head = prev;
 		return prev;
 
 	}
@@ -48,11 +50,11 @@ public class ReverseList {
 		if (p == null || p.next == null) {
 			return p;
 		}
-		Node head  = reverseR(p.next);
+		Node head = reverseR(p.next);
 		Node q = p.next;
 		q.next = p;
 		p.next = null;
 		return head;
 	}
-	
+
 }
